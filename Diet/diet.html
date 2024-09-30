@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Recommendations</title>
+    <link rel="stylesheet" href="diet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="BMI.html">BMI Calculator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Physical Healthy.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="diet.html">Diet Recommendations</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Diet Recommendations</h1>
+        <div id="dietAdvice" class="mt-4 text-center font-weight-bold"></div>
+
+        <h2 class="mt-4 text-center">Meal Suggestions</h2>
+        <div id="mealSuggestions" class="mt-3 text-center"></div>
+
+        <!-- Nutritional Information Table -->
+        <h2 class="mt-5 text-center">Nutritional Information</h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Nutrient</th>
+                    <th>Food Source</th>
+                    <th>Calories per 100g</th>
+                    <th>Select</th> <!-- Moved the select column here -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Carbohydrates</td>
+                    <td>Oats</td>
+                    <td>379 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="379"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Whole Wheat Bread</td>
+                    <td>68.88 cal/slice</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="68.88"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Cereals</td>
+                    <td>379 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="379"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Brown Rice</td>
+                    <td>111 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="111"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Potatoes</td>
+                    <td>87 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="87"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" placeholder="Other Carbohydrates (e.g., Pasta)" id="carb-other-food"></td>
+                    <td><input type="number" class="form-control" placeholder="Calories" id="carb-other-calories"></td>
+                    <td><input type="checkbox" class="recipe-checkbox" id="carb-other-checkbox" data-calories="0"></td>
+                </tr>
+                <tr>
+                    <td>Proteins</td>
+                    <td>Chicken Breast</td>
+                    <td>265 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="265"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Beef</td>
+                    <td>250 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="250"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Fish</td>
+                    <td>206 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="206"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Milk</td>
+                    <td>42 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="42"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Yogurt</td>
+                    <td>59 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="59"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Prawn</td>
+                    <td>99 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="99"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Cheese</td>
+                    <td>402 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="402"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Squid</td>
+                    <td>175 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="175"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" placeholder="Other Protenis (e.g., Soy product)" id="prot-other-food"></td>
+                    <td><input type="number" class="form-control" placeholder="Calories" id="prot-other-calories"></td>
+                    <td><input type="checkbox" class="recipe-checkbox" id="prot-other-checkbox" data-calories="0"></td>
+                </tr>
+                <tr>
+                    <td>Fiber</td>
+                    <td>Broccoli</td>
+                    <td>34 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="34"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Carrot</td>
+                    <td>41 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="41"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Avocado</td>
+                    <td>160 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="160"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Lettuce</td>
+                    <td>15 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="15"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Yam</td>
+                    <td>118 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="118"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Apple</td>
+                    <td>52 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="52"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Orange</td>
+                    <td>47 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="47"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Mangoes</td>
+                    <td>60 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="60"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Watermelon</td>
+                    <td>30 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="30"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Strawberry</td>
+                    <td>33 cal</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="33"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" placeholder="Other Fiber (e.g., Pear)" id="fiber-other-food"></td>
+                    <td><input type="number" class="form-control" placeholder="Calories" id="fiber-other-calories"></td>
+                    <td><input type="checkbox" class="recipe-checkbox" id="fiber-other-checkbox" data-calories="0"></td>
+                </tr>
+                <tr>
+                    <td>Fat</td>
+                    <td>Nuts</td>
+                    <td>522 cal/100g</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="522"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Butter</td>
+                    <td>617 cal/100g</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="617"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Oils (Olive Oil)</td>
+                    <td>760 cal/100g</td>
+                    <td><input type="checkbox" class="recipe-checkbox" data-calories="760"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" placeholder="Other Fat (e.g., Margarine)" id="oil-other-food"></td>
+                    <td><input type="number" class="form-control" placeholder="Calories" id="oil-other-calories"></td>
+                    <td><input type="checkbox" class="recipe-checkbox" id="oil-other-checkbox" data-calories="0"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-info mt-3" id="calculateCalories">Calculate Total Calories</button>
+        <h2 class="mt-4 text-center" id="totalCalories">Total Calories: 0</h2>
+
+        <button class="btn btn-info mt-3" data-toggle="modal" data-target="#moreInfoModal">Learn More About Dietary Planning</button>
+        <a href="BMI.html" class="btn btn-secondary btn-block mt-3">Go back to BMI Calculator</a>
+    </div>
+
+    <!-- More Information Modal -->
+    <div class="modal fade" id="moreInfoModal" tabindex="-1" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="moreInfoModalLabel">Dietary Planning Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="dietPlanningAdvice"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Get the BMI category from URL
+        const category = getUrlParameter('category');
+        let advice = '';
+        let mealSuggestions = '';
+
+        // Provide nutritional tips and meal suggestions based on the BMI category
+        const dietaryInfo = {
+            'Underweight': {
+                advice: "Consider increasing calorie intake with nutrient-dense foods like nuts, seeds, avocados, and whole grains.",
+                meals: `
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Meal</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">Males (3000+ cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>736 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>661 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>880 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>768 cal</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">Females (2800-3000 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>726 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>661 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>728 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>768 cal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `
+            },
+            'Normal weight': {
+                advice: "Maintain a balanced diet rich in fruits, vegetables, lean proteins, and whole grains.",
+                meals: `
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Meal</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">Males (2000-2600 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>569 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>389 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>697 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>648 cal</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">Females (1600-2000 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>569 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>389 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>697 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>648 cal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `
+            },
+            'Overweight': {
+                advice: "Focus on portion control and include more vegetables and lean proteins in your meals.",
+                meals: ` 
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Meal</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">Males (1900 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>736 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>300 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>500 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>364 cal</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">Females (1600 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>550 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>200 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>450 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>400 cal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `
+            },
+            'Obese': {
+                advice: "Consult a healthcare provider for personalized dietary advice, focusing on reducing calorie intake.",
+                meals: ` 
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Meal</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">Males (1900 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>736 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>300 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>500 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>364 cal</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">Females (1400 cal per day)</td>
+                                <td>Breakfast</td>
+                                <td>500 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td>200 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch</td>
+                                <td>400 cal</td>
+                            </tr>
+                            <tr>
+                                <td>Dinner</td>
+                                <td>300 cal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `
+            },
+        };
+
+        // Get advice and meal suggestions based on category
+        if (dietaryInfo[category]) {
+            advice = dietaryInfo[category].advice;
+            mealSuggestions = dietaryInfo[category].meals;
+        } else {
+            advice = "No dietary advice available.";
+            mealSuggestions = "No meal suggestions available.";
+        }
+
+        // Display the advice and meal suggestions
+        document.getElementById("dietAdvice").innerText = advice;
+        document.getElementById("mealSuggestions").innerHTML = mealSuggestions;
+
+        // More information about dietary planning
+        const planningAdvice = {
+            'Underweight': "To gain weight, aim for high-calorie foods such as smoothies, protein bars, and healthy fats. Consider adding snacks between meals.",
+            'Normal weight': "Keep your current weight by following a balanced diet and incorporating exercise. Monitor portion sizes.",
+            'Overweight': "Create a calorie deficit by tracking food intake and engaging in regular physical activity. Focus on whole foods and avoid processed items.",
+            'Obese': "Work with a healthcare professional to develop a structured meal plan and set realistic weight loss goals.",
+        };
+
+        // Event listener for showing more advice in the modal
+        document.querySelector('.btn-info').addEventListener('click', function() {
+            const category = localStorage.getItem('bmiCategory') || "normal"; // Get BMI category from local storage
+            const planningAdvice = {
+                underweight: "You should consider adding nutrient-rich foods with higher calorie content...",
+                normal: "Maintain a balanced and healthy diet. Keep incorporating fruits, vegetables...",
+                overweight: "Focus on portion control, reduce intake of fatty foods and refined sugars...",
+                obese: "It is essential to reduce calorie intake and maintain regular physical activity..."
+        };
+
+        const moreAdvice = planningAdvice[category] || "No additional information available.";
+        document.getElementById("dietPlanningAdvice").innerText = moreAdvice;
+        });
+
+        // Calculate total calories based on selected recipes and user input
+        document.getElementById('calculateCalories').addEventListener('click', function() {
+            let totalCalories = 0;
+
+        // Loop through all checked checkboxes and sum up their calories
+            const checkboxes = document.querySelectorAll('.recipe-checkbox:checked');
+            checkboxes.forEach(function(checkbox) {
+                const foodCalories = parseFloat(checkbox.getAttribute('data-calories'));
+                if (!isNaN(foodCalories)) {
+                    totalCalories += foodCalories;
+                }
+            });
+
+        // Include user input for "Other" fields regardless of the checkbox state
+            const carbOtherCalories = parseFloat(document.getElementById('carb-other-calories').value);
+            if (!isNaN(carbOtherCalories)) {
+                totalCalories += carbOtherCalories;
+            }
+
+            const protOtherCalories = parseFloat(document.getElementById('prot-other-calories').value);
+            if (!isNaN(protOtherCalories)) {
+                totalCalories += protOtherCalories;
+            }
+
+            const fiberOtherCalories = parseFloat(document.getElementById('fiber-other-calories').value);
+            if (!isNaN(fiberOtherCalories)) {
+                totalCalories += fiberOtherCalories;
+            }
+
+            const oilOtherCalories = parseFloat(document.getElementById('oil-other-calories').value);
+            if (!isNaN(oilOtherCalories)) {
+                totalCalories += oilOtherCalories;
+            }
+
+            // Display the calculated total calories
+            document.getElementById('totalCalories').innerText = `Total Calories: ${totalCalories}`;
+        });
+
+    </script>
+</body>
+</html>

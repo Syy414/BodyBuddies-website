@@ -1,0 +1,296 @@
+/* Keep the original background and font */
+body {
+    background-color: #f0f8ff; /* Light blue background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Enhanced Navbar Styles */
+.navbar {
+    background: linear-gradient(135deg, #4b0082, #4169e1); /* Gradient background */
+    padding: 15px 30px; /* Add padding for more spacious look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.navbar ul li {
+    margin: 0 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem; /* Slightly larger text */
+    padding: 10px 20px;
+    transition: background-color 0.4s, transform 0.3s, color 0.3s; /* Smooth transitions */
+    border-radius: 5px; /* Rounded edges */
+    display: flex;
+    align-items: center; /* Align text and icon */
+}
+
+.navbar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+    color: #f9f9f9;
+    transform: translateY(-3px); /* Slight lift effect on hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Soft shadow on hover */
+}
+
+/* Add FontAwesome icons to links for modern look */
+.navbar ul li a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .navbar ul li a {
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* Ensure the table and card sizes are consistent */
+.container {
+    margin: 20px auto; /* Center container */
+    background: white; /* White background */
+    padding: 30px; /* Padding inside the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    max-width: 800px; /* Limit the width for consistency */
+}
+
+h1 {
+    color: #4b0082; /* Indigo color */
+    text-align: center;
+    margin-bottom: 10px; /* Reduced margin */
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: #4169e1; /* Color for subtitle */
+    text-align: center; /* Center subtitle */
+    margin-bottom: 20px; /* Space below subtitle */
+    font-size: 1.5rem; /* Subtitle font size */
+}
+
+/* Footer Styles - kept as is */
+footer {
+    padding: 20px 0;
+    background-color: #e9ecef;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Consistent table styling */
+.table {
+    width: 100%;
+    max-width: 800px; /* Ensure all tables have consistent max width */
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #4169e1; /* Consistent header color */
+    color: white;
+}
+
+/* Icon container kept as in the original code */
+.icon-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between icons */
+    padding: 20px 0;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 15px;
+    background-color: #90ee90; /* Light green background */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icon:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background-color: #32cd32; /* Lime green on hover */
+}
+
+.icon span {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+/* Keep section hidden until triggered */
+.section {
+    display: none;
+}
+
+.section.d-block {
+    display: block;
+}
+
+/* Button style kept as is */
+.btn-info {
+    background-color: #4169e1;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 1.1rem;
+}
+
+.btn-info:hover {
+    background-color: #273c75;
+    transform: scale(1.05);
+}
+
+/* Card layout */
+.card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto; /* Center the card */
+    transition: transform 0.3s;
+    max-width: 800px; /* Limit the width */
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Centering title and subtitle in the info section */
+.info-section {
+    text-align: center; /* Center text */
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+/* Centering the "More Information" button */
+.more-info-container {
+    display: flex;
+    justify-content: center; /* Center the button */
+    margin-top: 20px; /* Add space above the button */
+}
+
+/* Keep section hidden until triggered */
+.section {
+    display: none; /* Hide all sections by default */
+}
+
+.section.active {
+    display: block; /* Show the active section */
+}
+
+h3 {
+    text-align: center; /* Center text horizontally */
+    margin: 0; /* Remove default margin for better centering */
+}
+
+.more-info {
+    text-align: center; /* Center the button horizontally */
+    margin: 20px 0; /* Add some margin for spacing */
+}
+
+.more-info .btn {
+    margin: 0 auto; /* Ensure the button itself has no margin, if needed */
+}
+
+@keyframes fade-slide-up {
+            0% {
+                transform: translateY(50px); /* Start slightly lower */
+                opacity: 0; /* Fully transparent */
+            }
+            100% {
+                transform: translateY(0); /* Slide to the original position */
+                opacity: 1; /* Fully visible */
+            }
+        }
+
+        h3 {
+            margin: 0; /* Remove default margin for better centering */
+            font-size: 2.5rem; /* Adjust font size for visibility */
+            color: #4b0082; /* Color for title */
+        }
+
+        h2 {
+            color: #4169e1; /* Color for subtitle */
+            font-size: 1.8rem; /* Subtitle font size */
+        }
+
+        /* Centering the "More Information" button */
+        .more-info-container {
+            display: flex;
+            justify-content: center; /* Center the button */
+            margin-top: 20px; /* Add space above the button */
+        }
+
+        .more-info {
+            text-align: center; /* Center the button horizontally */
+            margin: 20px 0; /* Add some margin for spacing */
+        }
+
+        .btn-info {
+            background-color: #4169e1;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 1.2rem; /* Larger button text */
+        }
+
+        .btn-info:hover {
+            background-color: #273c75;
+            transform: scale(1.05);
+        }

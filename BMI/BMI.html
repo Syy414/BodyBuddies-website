@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="BMI.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">BMI Calculator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Innozilla.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="diet.html">Diet Recommendations</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">BMI Calculator</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow bg-light">
+                    <div class="card-body">
+                        <form id="bmiForm">
+                            <div class="form-group">
+                                <label for="weight">Weight (kg or lbs):</label>
+                                <input type="number" class="form-control" id="weight" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Height (m or in):</label>
+                                <input type="number" class="form-control" id="height" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="unit">Unit:</label>
+                                <select class="form-control" id="unit">
+                                    <option value="metric">Metric (kg/m)</option>
+                                    <option value="imperial">Imperial (lbs/in)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Calculate BMI</button>
+                        </form>
+                        <div id="result" class="mt-3 text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="dietModal" tabindex="-1" aria-labelledby="dietModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dietModalLabel">Diet Recommendations</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="dietAdvice"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a id="dietLink" class="btn btn-info" href="#" target="_blank">Learn More About Dietary Planning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('bmiForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+            const unit = document.getElementById("unit").value;
+            let bmi;
+
+            // Convert to metric if using imperial
+            if (unit === "imperial") {
+                bmi = (weight / (height * height)) * 703; // BMI formula for imperial
+            } else {
+                bmi = weight / (height * height); // BMI formula for metric
+            }
+
+            // Determine the category
+            let category;
+            if (bmi < 18.5) {
+                category = "Underweight";
+            } else if (bmi < 25) {
+                category = "Normal weight";
+            } else if (bmi < 30) {
+                category = "Overweight";
+            } else {
+                category = "Obese";
+            }
+
+            // Display the result
+            document.getElementById("result").innerHTML = `Your BMI: ${bmi.toFixed(2)} - ${category}`;
+
+            // Set the diet advice in the modal
+            const advice = getDietAdvice(category);
+            document.getElementById("dietAdvice").innerText = advice;
+
+            // Create a link to the diet recommendations page with the BMI category
+            const dietLink = `file:///C:/Users/szeyo/OneDrive/Desktop/VSC/Diet/diet.html?category=${encodeURIComponent(category)}`;
+            document.getElementById("dietLink").setAttribute("href", dietLink);
+
+
+            // Show the modal
+            $('#dietModal').modal('show');
+        });
+
+        function getDietAdvice(category) {
+            switch (category) {
+                case 'Underweight':
+                    return "Consider increasing calorie intake with nutrient-dense foods like nuts, seeds, avocados, and whole grains.";
+                case 'Normal weight':
+                    return "Maintain a balanced diet rich in fruits, vegetables, lean proteins, and whole grains.";
+                case 'Overweight':
+                    return "Focus on portion control and include more vegetables and lean proteins in your meals.";
+                case 'Obese':
+                    return "Consult a healthcare provider for personalized dietary advice, focusing on reducing calorie intake.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>  
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Fitness Dashboard</title> 
+    <style> 
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f4f4; 
+            color: #34495e; 
+        } 
+ 
+        .header { 
+            background-color: #2c3e50; 
+            padding: 20px; 
+            text-align: center; 
+            color: white; 
+        } 
+ 
+        .header h1 { 
+            margin: 0; 
+            font-size: 36px; 
+            text-transform: uppercase; 
+        } 
+ 
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        } 
+ 
+        /* Weekly Workout Plan Styles */ 
+        .workout-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            justify-content: center; 
+            margin-bottom: 40px; 
+        } 
+ 
+        .workout-card { 
+            background-color: white; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+            padding: 20px; 
+            width: 350px; 
+            transition: transform 0.3s; 
+            text-align: left; 
+        } 
+ 
+        .workout-card img { 
+            width: 100%; 
+            border-radius: 15px; 
+            height: 200px; 
+            object-fit: cover; 
+        } 
+ 
+        .workout-card:hover { 
+            transform: translateY(-5px); 
+        } 
+ 
+        .workout-info { 
+            padding: 20px 0; 
+        } 
+ 
+        .workout-info h2 { 
+            font-size: 24px; 
+            margin-bottom: 10px; 
+            color: #2c3e50; 
+        } 
+ 
+        .workout-info p { 
+            font-size: 16px; 
+            color: #34495e; 
+        } 
+ 
+        /* Custom Done Buttons */ 
+        .done-btn { 
+            display: inline-block; 
+            background-color: #e74c3c; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 25px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, transform 0.3s; 
+            outline: none; 
+            position: relative; 
+            margin-top: 10px; 
+        } 
+ 
+        .done-btn.done { 
+            background-color: #2ecc71; 
+        } 
+ 
+        .done-btn.done::after { 
+            content: '✔'; 
+            font-size: 18px; 
+            position: absolute; 
+            top: 50%; 
+            right: 15px; 
+            transform: translateY(-50%); 
+        } 
+ 
+        .done-btn:hover { 
+            background-color: #e67e22; 
+        } 
+ 
+        .done-btn.done:hover { 
+            background-color: #27ae60; 
+        } 
+ 
+        .done-btn:active { 
+            transform: scale(0.95); 
+        } 
+ 
+        /* Progress Bar Styles */ 
+        .progress-container { 
+            margin: 20px 0; 
+            text-align: center; 
+        } 
+ 
+        .progress-bar { 
+            width: 100%; 
+            background-color: #ecf0f1; 
+            border-radius: 20px; 
+            overflow: hidden; 
+        } 
+ 
+        .progress { 
+            height: 20px; 
+            background-color: #3498db; 
+            width: 0%; /* Initial width */ 
+            transition: width 0.4s ease-in-out; 
+        } 
+ 
+        /* Reset Button Styles */ 
+        .reset-btn { 
+            margin-top: 20px; 
+            padding: 10px 20px; 
+            background-color: #e74c3c; 
+            color: white; 
+            border: none; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        } 
+ 
+        .reset-btn:hover { 
+            background-color: #c0392b; 
+        } 
+ 
+        /* Responsive Design */ 
+        @media (max-width: 768px) { 
+            .stat-box, .workout-card, .exercise-card { 
+                width: 100%; 
+            } 
+ 
+            .progress-bar { 
+                width: 100%; 
+            } 
+        }
+ 
+ /* Weekly Workout Plan Heading Styles */ 
+ .weekly-workout-title { 
+     text-align: center; 
+     margin-bottom: 40px; 
+     font-size: 36px; /* Larger font size for emphasis */ 
+     font-weight: bold; /* Bold font for importance */ 
+     color: #2c3e50; /* Dark color for the text */ 
+     letter-spacing: 1.5px; /* Increased letter spacing for elegance */ 
+     text-transform: uppercase; /* Uppercase letters for a stronger presence */ 
+     position: relative; /* Allows for pseudo-element positioning */ 
+     padding-bottom: 10px; /* Space for the underline effect */ 
+     transition: color 0.4s ease-in-out; /* Smooth color transition on hover */ 
+ } 
+
+ /* Underline Effect */ 
+ .weekly-workout-title::after { 
+     content: ''; 
+     display: block; 
+     width: 80px; /* Start with a shorter line */ 
+     height: 4px; /* Thickness of the underline */ 
+     background-color: #3498db; /* Color of the underline */ 
+     margin: 10px auto 0; /* Center the underline */ 
+     border-radius: 5px; /* Rounded edges for a softer look */ 
+     transition: width 0.4s ease-in-out; /* Smooth transition */ 
+ } 
+
+ /* Hover Effect for Underline */ 
+ .weekly-workout-title:hover { 
+     color: #3498db; /* Change heading text color on hover */ 
+ } 
+
+ .weekly-workout-title:hover::after { 
+     width: 150px; /* Extend line length on hover */ 
+     background-color: #2980b9; /* Darker blue on hover */ 
+ } 
+
+
+
+
+/* Section Styling */ 
+ .exercise-section { 
+     margin: 40px 0; 
+     padding: 20px; 
+     background: #fff; 
+     border-radius: 20px; 
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+ } 
+
+/* Heading Styling with Hover Transition */ 
+.exercise-section h2 { 
+text-align: center; 
+font-size: 32px; 
+font-weight: 600; /* Bolder font for the heading */ 
+color: #2c3e50; 
+margin-bottom: 20px; 
+position: relative; 
+cursor: pointer; /* Indicates interaction */ 
+padding-bottom: 10px; /* Space for underline */ 
+letter-spacing: 1px; /* Adds a professional touch */ 
+transition: color 0.4s ease-in-out; /* Smooth color transition on hover */ 
+} 
+
+/* Divider Below Headings */ 
+.exercise-section h2::after { 
+content: ''; 
+width: 80px; /* Start with a shorter line */ 
+height: 3px; 
+background-color: #3498db; 
+display: block; 
+margin: 8px auto 0; 
+border-radius: 5px; /* Softer edges */ 
+transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out; /* Smooth transitions */ 
+} 
+
+/* Hover Effect for Line and Heading */ 
+.exercise-section h2:hover { 
+color: #3498db; /* Changes heading text color on hover */ 
+} 
+
+.exercise-section h2:hover::after { 
+width: 150px; /* Extend line length on hover */ 
+background-color: #2980b9; /* Slightly darker blue for the underline on hover */ 
+} 
+
+/* Exercise List */ 
+.exercise-list { 
+display: flex; 
+flex-wrap: wrap; 
+justify-content: space-between; 
+gap: 30px; 
+margin-top: 20px; 
+} 
+
+/* Exercise Card Styling */ 
+.exercise-card { 
+background: #ecf0f1; /* Light background for cards */ 
+padding: 20px; 
+border-radius: 8px; 
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a card */ 
+transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transformation */ 
+} 
+
+.exercise-card:hover { 
+transform: translateY(-5px); /* Lifts the card slightly on hover */ 
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhances the shadow on hover */ 
+} 
+
+/* Responsive Adjustments */ 
+@media (max-width: 768px) { 
+.exercise-list { 
+ flex-direction: column; 
+ gap: 20px; 
+} 
+} 
+
+
+ /* Exercise Card */ 
+ .exercise-card { 
+     background: linear-gradient(135deg, #f8f9fa 0%, #eef2f3 100%);
+     border-radius: 15px; 
+            padding: 20px; 
+            width: 320px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+        } 
+ 
+        .exercise-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); 
+        } 
+ 
+        .exercise-card h3 { 
+            font-size: 22px; 
+            color: #3498db; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+        } 
+ 
+        .exercise-card h3::before { 
+            content: '🏋️‍♂️'; /* You can replace this with a relevant icon */ 
+            font-size: 26px; 
+            margin-right: 10px; 
+        } 
+ 
+        .exercise-card p { 
+            font-size: 16px; 
+            color: #7f8c8d; 
+            line-height: 1.6; 
+            margin-bottom: 10px; 
+        } 
+ 
+        /* Enhancing the overall layout */ 
+        @media (max-width: 768px) { 
+            .exercise-list { 
+                flex-direction: column; 
+                align-items: center; 
+            } 
+ 
+            .exercise-card { 
+                width: 100%; 
+            } 
+        } 
+ 
+  
+        .header { 
+            text-align: center; 
+            color: white; 
+            margin-bottom: 40px; 
+        } 
+ 
+        .header h1 { 
+            font-size: 48px; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+        } 
+ 
+ 
+ 
+    </style> 
+</head> 
+<body> 
+ 
+<div class="header"> 
+    <h1>Fitness Dashboard</h1> 
+</div> 
+ 
+<div class="container"> 
+ 
+    <!-- Weekly Workout Plan Section --> 
+    <h2 class="weekly-workout-title">Weekly Workout Plan</h2> 
+    <div class="workout-grid"> 
+        <!-- Day 1 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Upper Body Workout"> 
+            <div class="workout-info"> 
+                <h2>Day 1 (Strength – Upper Body)</h2> 
+                <p>Push-ups, Dumbbell Rows, Shoulder Press, Bicep Curls, Tricep Dips.</p> 
+                <button class="done-btn" id="day1" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+ 
+        <!-- Day 2 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Cardio + Core Workout"> 
+            <div class="workout-info"> 
+                <h2>Day 2 (Cardio + Core)</h2> 
+                <p>30 minutes of cycling, followed by planks, Russian twists, and leg raises.</p> 
+                <button class="done-btn" id="day2" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+ 
+        <!-- Day 3 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Lower Body Workout"> 
+            <div class="workout-info"> 
+                <h2>Day 3 (Strength – Lower Body)</h2> 
+                <p>Squats, Lunges, Deadlifts, Leg Press, Calf Raises.</p> 
+                <button class="done-btn" id="day3" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+ 
+        <!-- Day 4 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Flexibility and Mobility"> 
+            <div class="workout-info"> 
+                <h2>Day 4 (Flexibility and Mobility)</h2> 
+                <p>Yoga or a 20-minute stretching routine.</p> 
+                <button class="done-btn" id="day4" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+ 
+        <!-- Day 5 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Cardio Workout"> 
+            <div class="workout-info"> 
+                <h2>Day 5 (Cardio)</h2> 
+                <p>30 minutes of swimming or jogging.</p> 
+                <button class="done-btn" id="day5" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+ 
+        <!-- Day 6 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Full Body Circuit"> 
+            <div class="workout-info"> 
+                <h2>Day 6 (Full Body Circuit)</h2> 
+                <p>Burpees, Jumping Jacks, Mountain Climbers, High Knees.</p> 
+                <button class="done-btn" id="day6" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+ 
+        <!-- Day 7 --> 
+        <div class="workout-card"> 
+            <img src="https://via.placeholder.com/350x200" alt="Rest Day"> 
+            <div class="workout-info"> 
+                <h2>Day 7 (Rest Day)</h2> 
+                <p>Take a break, hydrate, and prepare for next week!</p> 
+                <button class="done-btn" id="day7" onclick="toggleDone(this)">Mark as Done</button> 
+            </div> 
+        </div> 
+    </div> 
+ 
+    <!-- Progress Bar Section --> 
+    <div class="progress-container"> 
+        <h3>Progress: <span id="progress-percentage">0</span>%</h3> 
+        <div class="progress-bar"> 
+            <div class="progress" id="progress"></div> 
+        </div> 
+        <button class="reset-btn" id="reset-btn" onclick="resetProgress()">Reset Progress</button> 
+    </div> 
+ 
+</div> 
+ 
+ 
+ 
+ 
+ 
+<div class="header"> 
+    <h1>Fitness Dashboard</h1> 
+</div> 
+ 
+<!-- Cardiovascular Exercises Section --> 
+<div class="exercise-section"> 
+    <h2>Cardiovascular Exercises</h2> 
+    <div class="exercise-list"> 
+        <div class="exercise-card"> 
+            <h3>1. Brisk Walking (30–45 minutes)</h3> 
+            <p>• A low-impact activity that boosts cardiovascular fitness and burns calories.</p> 
+            <p>• Great for beginners or as an active recovery workout.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>2. Running or Jogging (20–30 minutes)</h3> 
+            <p>• Helps improve endurance, cardiovascular health, and muscle tone.</p> 
+            <p>• For a more intense workout, add intervals of sprinting.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>3. Cycling (30–45 minutes)</h3> 
+            <p>• A low-impact cardio exercise that strengthens the lower body while improving heart health.</p> 
+            <p>• You can cycle outdoors or use a stationary bike.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>4. Jump Rope (15–20 minutes)</h3> 
+            <p>• A high-intensity cardio workout that improves agility, coordination, and burns calories.</p> 
+        </div> 
+    </div> 
+</div> 
+ 
+<!-- Strength Training Exercises Section --> 
+<div class="exercise-section"> 
+    <h2>Strength Training Exercises</h2> 
+    <div class="exercise-list"> 
+        <div class="exercise-card"> 
+            <h3>1. Push-ups (3 sets of 10–15 reps)</h3> 
+            <p>• Works the chest, shoulders, triceps, and core.</p> 
+            <p>• Modify by doing knee push-ups if needed, or elevate feet for added challenge.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>2. Dumbbell Rows (3 sets of 10–12 reps per arm)</h3> 
+            <p>• Strengthens the back, biceps, and shoulders.</p> 
+            <p>• Can be done using dumbbells or resistance bands.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>3. Squats (3 sets of 12–15 reps)</h3> 
+            <p>• Strengthens the quads, glutes, hamstrings, and calves.</p> 
+            <p>• For added intensity, hold dumbbells or a barbell.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>4. Lunges (3 sets of 10–12 reps per leg)</h3> 
+            <p>• Targets quads, hamstrings, glutes, and calves.</p> 
+            <p>• Can be done walking or stationary, with or without weights.</p> 
+        </div> 
+ 
+        <div class="exercise-card"> 
+            <h3>5. Plank (3 sets of 30–60 seconds)</h3> 
+            <p>• Works the core, shoulders, and glutes.</p> 
+            <p>• Try side planks or plank variations for an added challenge.</p> 
+        </div> 
+    </div> 
+</div> 
+ 
+ 
+ 
+ 
+ 
+ 
+<script> 
+    // Progress Variables 
+    let totalWorkouts = 7; 
+    let completedWorkouts = 0; 
+ 
+ function toggleDone(button) { 
+     const workoutCard = button.closest('.workout-card'); 
+     const progressElement = document.getElementById('progress'); 
+     const progressPercentageElement = document.getElementById('progress-percentage'); 
+
+     if (button.classList.contains('done')) { 
+         // If already done, mark it as not done 
+         button.classList.remove('done'); 
+         completedWorkouts--; 
+         button.textContent = 'Mark as Done'; 
+     } else { 
+         // Mark the workout as done 
+         button.classList.add('done'); 
+         completedWorkouts++; 
+         button.textContent = 'Done!'; 
+     } 
+
+     // Calculate progress percentage 
+     const progressPercentage = (completedWorkouts / totalWorkouts) * 100; 
+     progressElement.style.width = progressPercentage + '%'; 
+     progressPercentageElement.textContent = Math.round(progressPercentage); 
+ } 
+
+ function resetProgress() { 
+     const buttons = document.querySelectorAll('.done-btn'); 
+     buttons.forEach(button => { 
+         button.classList.remove('done'); 
+         button.textContent = 'Mark as Done'; 
+     }); 
+
+     // Reset progress 
+     completedWorkouts = 0; 
+     const progressElement = document.getElementById('progress'); 
+     const progressPercentageElement = document.getElementById('progress-percentage'); 
+     progressElement.style.width = '0%'; 
+     progressPercentageElement.textContent = '0'; 
+ } 
+</script> 
+
+</body> 
+</html>

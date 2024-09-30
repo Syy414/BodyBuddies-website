@@ -1,0 +1,72 @@
+/* BODY STYLES */
+body {
+    background-color: #f8f9fa; /* Light background color for the entire page */
+}
+
+/* HEADINGS */
+h1 {
+    color: #343a40; /* Dark gray color for the main heading */
+}
+
+/* CARD STYLES */
+.card {
+    border-radius: 10px; /* Rounded corners for the card */
+}
+
+.card-body {
+    position: relative; /* Allows positioning for decorative elements */
+}
+
+/* BACKGROUND DECORATION IN CARD */
+.card-body:before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Adjusts position above the card */
+    left: -20px; /* Adjusts position to the left of the card */
+    width: 100%; /* Full width of the card */
+    height: 100%; /* Full height of the card */
+    background-image: url('path/to/your/background-pattern.png'); /* Background pattern for decoration */
+    opacity: 0.1; /* Light opacity for subtle effect */
+    border-radius: 10px; /* Rounded corners to match the card */
+    z-index: 0; /* Send background to back */
+}
+
+/* FORM ELEMENTS IN CARD */
+.card-body > * {
+    position: relative; /* Elevate form elements above background */
+    z-index: 1; /* Ensure form elements are above the background */
+}
+
+/* MODAL STYLES */
+.modal-content {
+    border-radius: 10px; /* Rounded corners for the modal */
+}
+
+/* FORM CONTROL STYLES */
+.form-control {
+    border-radius: 5px; /* Rounded corners for input fields */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light shadow effect on focus */
+}
+
+/* BUTTON STYLES */
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary button color */
+    border-color: #007bff; /* Border color for primary button */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover for primary button */
+}
+
+.btn-info {
+    background-color: #17a2b8; /* Info button color */
+}
+
+.btn-info:hover {
+    background-color: #138496; /* Darker shade on hover for info button */
+}
